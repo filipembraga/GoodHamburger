@@ -43,14 +43,7 @@ public class OrderService : IOrderService
         ValidateDuplicateCategories(products);
 
         var order = new Order();
-        order.Items = products.Select(p => new OrderItem
-        {
-            ProductId = p.Id,
-            Product = p,
-            OrderId = order.Id
-        }).ToList();  
-
-        order.Discount = DiscountCalculator.CalculateDiscount(order.Items); 
+        BuildOrderItems(order, dto.ProductIds);
 
         await _orderRepository.AddAsync(order);
         return MapToDto(order);  
@@ -61,18 +54,8 @@ public class OrderService : IOrderService
         var order = await _orderRepository.GetByIdAsync(id)
             ?? throw new KeyNotFoundException($"Order {id} not found.");
 
-        var products = ResolveProducts(dto.ProductIds);
-        ValidateDuplicateCategories(products);
-
-        order.Items = products.Select(p => new OrderItem
-        {
-            ProductId = p.Id,
-            Product = p,
-            OrderId = order.Id
-        }).ToList();
-
-        order.Discount = DiscountCalculator.CalculateDiscount(order.Items);
-
+        BuildOrderItems(order, dto.ProductIds);
+        
         await _orderRepository.UpdateAsync(order);
         return MapToDto(order);
     }
@@ -113,6 +96,21 @@ public class OrderService : IOrderService
             products.Add(product);
         }
         return products;
+    }
+
+    private static void BuildOrderItems(Order order, List<int> productIds)
+    {
+        var products = ResolveProducts(productIds);
+        ValidateDuplicateCategories(products);
+
+        order.Items = products.Select(p => new OrderItem
+        {
+            ProductId = p.Id,
+            Product = p,
+            OrderId = order.Id
+        }).ToList();
+
+        order.Discount = DiscountCalculator.CalculateDiscount(order.Items);
     }
 
     private static void ValidateDuplicateCategories(List<Product> products)
