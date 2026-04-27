@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../GoodHamburger.Application/GoodHamburger.Application.csproj" />
+    <ProjectReference Include="../GoodHamburger.Infrastructure/GoodHamburger.Infrastructure.csproj" />
+    <ProjectReference Include="../GoodHamburger.Domain\GoodHamburger.Domain.csproj" />
   </ItemGroup>
 
 </Project>
