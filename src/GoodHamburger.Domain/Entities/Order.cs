@@ -3,6 +3,7 @@ namespace GoodHamburger.Domain.Entities
     public class Order
     {
         public Guid Id { get; set; } = Guid.NewGuid();
+        public int OrderNumber { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;
         public List<OrderItem> Items { get; set; } = new();
 

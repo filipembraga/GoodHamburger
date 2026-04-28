@@ -11,13 +11,13 @@ public class OrderItemMapping : IEntityTypeConfiguration<OrderItem>
         builder.ToTable("OrderItems");
 
         builder.HasKey(i => i.Id);
-
         builder.Property(i => i.ProductId)
             .IsRequired();
-
         builder.Property(i => i.OrderId)
             .IsRequired();
-
-        builder.Ignore(i => i.Product); // Product is not a DB entity 
+        builder.HasOne(i => i.Product)
+            .WithMany()
+            .HasForeignKey(i => i.ProductId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -9,7 +9,9 @@ public class OrderMapping : IEntityTypeConfiguration<Order>
     public void Configure(EntityTypeBuilder<Order> builder)
     {
         builder.ToTable("Orders");
+        
         builder.HasKey(o => o.Id);
+        builder.Property(o => o.OrderNumber).IsRequired();
         builder.Property(o => o.OrderDate).IsRequired();
         builder.Property(o => o.Discount).HasPrecision(5, 2).IsRequired();
         builder.HasMany(o => o.Items)
