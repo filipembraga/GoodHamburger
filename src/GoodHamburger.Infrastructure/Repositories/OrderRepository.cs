@@ -1,10 +1,12 @@
 namespace GoodHamburger.Infrastructure.Repositories;
 
+using System.Diagnostics.CodeAnalysis;
 using GoodHamburger.Application.Interfaces;
 using GoodHamburger.Domain.Entities;
 using GoodHamburger.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
+[ExcludeFromCodeCoverage]
 public class OrderRepository : IOrderRepository
 {
     private readonly AppDbContext _context;

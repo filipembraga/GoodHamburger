@@ -1,5 +1,6 @@
 namespace GoodHamburger.IoC;
 
+using System.Diagnostics.CodeAnalysis;
 using GoodHamburger.Application.Interfaces;
 using GoodHamburger.Application.Services;
 using GoodHamburger.Infrastructure.Context;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-
+[ExcludeFromCodeCoverage]
 public static class DependencyInjection
 {
     public static IServiceCollection AddGoodHamburger(

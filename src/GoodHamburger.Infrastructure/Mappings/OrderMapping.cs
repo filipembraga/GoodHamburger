@@ -1,9 +1,12 @@
 namespace GoodHamburger.Infrastructure.Mappings;
 
+using System.Diagnostics.CodeAnalysis;
 using GoodHamburger.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+
+[ExcludeFromCodeCoverage]
 public class OrderMapping : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)

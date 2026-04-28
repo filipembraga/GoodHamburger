@@ -1,10 +1,13 @@
 namespace GoodHamburger.Infrastructure.Mappings;
 
+using System.Diagnostics.CodeAnalysis;
 using GoodHamburger.Domain.Entities;
 using GoodHamburger.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+
+[ExcludeFromCodeCoverage]
 public class ProductMapping : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)

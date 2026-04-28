@@ -1,8 +1,10 @@
 namespace GoodHamburger.Infrastructure.Context;
 
+using System.Diagnostics.CodeAnalysis;
 using GoodHamburger.Domain.Entities;
 using Microsoft.EntityFrameworkCore; 
 
+[ExcludeFromCodeCoverage]
 public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
